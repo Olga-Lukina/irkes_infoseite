@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return $parentCategories = Category::where('parent_id',NULL)->get();
+        return Category::where('parent_id',NULL)->get();
     }
 
     /**
@@ -22,10 +22,10 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view ('category.create');
-    }
+//    public function create()
+//    {
+//        return view ('category.create');
+//    }
 
     /**
      * Store a newly created resource in storage./methode um eine category zu speichern
@@ -33,24 +33,24 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $categories = Category::where('parent_id', null)->orderby('name', 'asc')->get();
-        if($request->method()=='GET')
-        {
-            return view('create-category', compact('categories'));
-        }
-        if($request->method()=='POST')
-        {
-            $request->validate([
-                'name'      => 'required',
-                'slug'      => 'required|unique:categories',
-                'parent_id' => 'nullable|numeric'
-            ]);
-
-            return redirect()->back()->with('success', 'Category has been created successfully.');
-        }
-    }
+//    public function store(Request $request)
+//    {
+//        $categories = Category::where('parent_id', null)->orderby('name', 'asc')->get();
+//        if($request->method()=='GET')
+//        {
+//            return view('create-category', compact('categories'));
+//        }
+//        if($request->method()=='POST')
+//        {
+//            $request->validate([
+//                'name'      => 'required',
+//                'slug'      => 'required|unique:categories',
+//                'parent_id' => 'nullable|numeric'
+//            ]);
+//
+//            return redirect()->back()->with('success', 'Category has been created successfully.');
+//        }
+//    }
 
     /**
      * Display the specified resource./methode um eine einzelne category anzeigen lassen
@@ -60,7 +60,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        return Category::findOrFail($id);
+        $category = Category::where('id', $id)->with('subcategory')->first();
+        return response()->json($category);
     }
 
     /**
