@@ -11,12 +11,12 @@ class AuthController extends Controller
 {
     public function register(Request $request) {
         $fields = $request->validate([
-            'name' => 'required|string',
-            'surname' => 'required|string',
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255',
             'telephone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
-            'email' => 'required|string|unique:users,email',
-            'companyname' => 'required|string',
-            'jobposition' => 'required|string',
+            'email' => 'required|max:255|unique:users,email',
+            'companyname' => 'required|max:255',
+            'jobposition' => 'required|max:255',
             'password' => 'required|string|min:6|confirmed'
         ]);
 

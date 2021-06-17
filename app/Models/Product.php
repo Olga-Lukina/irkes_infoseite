@@ -13,6 +13,18 @@ class Product extends Model
         'slug',
         'images',
         'description',
-        'categoryslug'
+        'categoryslug',
+        'qrcode',
+        'marketing',
+        'videorecipes'
     ];
+    public function recipes (){
+        return $this->hasMany(\App\Models\Recipe::class);
+    }
+    public function reviews (){
+        return $this->hasMany(\App\Models\Recipe::class);
+    }
+    public function questions (){
+        return $this->hasMany(\App\Models\Recipe::class);
+    }
 }

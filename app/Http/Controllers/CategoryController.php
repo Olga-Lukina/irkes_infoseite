@@ -82,12 +82,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        $category = Category::findOrFail($id);
-        $category->update( $request->all());
-        return $category;
-    }
+//    public function update(Request $request, $id)
+//    {
+//        $category = Category::findOrFail($id);
+//        $category->update( $request->all());
+//        return $category;
+//    }
 
     /**
      * Remove the specified resource from storage./methode um eine category zu löschen
@@ -95,10 +95,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $category = Category::findOrFail($id);
-        $category->delete();
-        return $category;
-    }
+//    public function destroy($id)
+//    {
+//        $category = Category::findOrFail($id);
+//        $category->delete();
+//        return $category;
+//    }
 }
