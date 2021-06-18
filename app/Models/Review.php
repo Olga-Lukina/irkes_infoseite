@@ -9,6 +9,11 @@ class Review extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'content'
+        'content',
+        'rating'
     ];
+    public function product()
+    {
+        return $this->belongsTo(\App\Models\Product::class, 'product_id');
+    }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Recipe;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
-class RecipeController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        return Recipe::all();
+        return Review::all();
     }
 
     /**
@@ -35,7 +35,11 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-
+        $request->validate([
+            'content' => 'required',
+            'rating' => 'required',
+        ]);
+        return Review::create($request->all());
     }
 
     /**
@@ -46,7 +50,7 @@ class RecipeController extends Controller
      */
     public function show($id)
     {
-        return Recipe::findOrFail($id);
+        return Review::findOrFail($id);
     }
 
     /**

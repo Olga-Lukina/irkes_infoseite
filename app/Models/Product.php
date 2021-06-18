@@ -13,7 +13,7 @@ class Product extends Model
         'slug',
         'images',
         'description',
-        'categoryslug',
+        'category_id',
         'qrcode',
         'marketing',
         'videorecipes'

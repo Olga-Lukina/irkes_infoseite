@@ -17,9 +17,10 @@ class CreateRecipesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->integer('product_id')->nullable();
+            $table->integer('product_id')->unsigned()->index();
             $table->string('image');
             $table->timestamps();
+
         });
     }
 

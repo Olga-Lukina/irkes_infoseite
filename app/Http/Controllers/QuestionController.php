@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Recipe;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
-class RecipeController extends Controller
+class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        return Recipe::all();
+        return Question::all();
     }
 
     /**
@@ -35,7 +35,10 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-
+        $request->validate([
+            'content'=> 'required',
+        ]);
+        return Question::create($request->all());
     }
 
     /**
@@ -46,7 +49,7 @@ class RecipeController extends Controller
      */
     public function show($id)
     {
-        return Recipe::findOrFail($id);
+        return Question::findOrFail($id);
     }
 
     /**

@@ -30,7 +30,7 @@ class ProductController extends Controller
             'slug' =>  'required',
             'description' =>  'required',
             'images' =>  'required',
-            'categoryslug'  =>  'required',
+            'category_id'  =>  'required',
         ]);
         return Product::create($request->all());
     }
