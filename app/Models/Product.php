@@ -22,9 +22,9 @@ class Product extends Model
         return $this->hasMany(\App\Models\Recipe::class);
     }
     public function reviews (){
-        return $this->hasMany(\App\Models\Recipe::class);
+        return $this->hasMany(\App\Models\Review::class);
     }
     public function questions (){
-        return $this->hasMany(\App\Models\Recipe::class);
+        return $this->hasMany(\App\Models\Question::class);
     }
 }

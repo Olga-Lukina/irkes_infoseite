@@ -25,14 +25,16 @@ use App\Http\Controllers\ReviewController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('products', [ProductController::class, 'index']);
-Route::get('products/{id}', [ProductController::class, 'show']);
+Route::get('products/{slug}', [ProductController::class, 'show']);
 Route::get('/products/search/{name}',[ProductController::class,'search']);
+Route::get('/products/incategory/{category_slug}',[ProductController::class,'incategory']);
 Route::get('categories', [CategoryController::class, 'index']);
 Route::get('categories/{id}', [CategoryController::class, 'show']);
 Route::get('recipes', [RecipeController::class, 'index']);
 Route::get('questions', [QuestionController::class, 'index']);
 Route::get('reviews', [ReviewController::class, 'index']);
-Route::get('reviews/{id}', [ReviewController::class, 'show']);
+Route::post('reviews', [ReviewController::class, 'store']);
+
 
 
 

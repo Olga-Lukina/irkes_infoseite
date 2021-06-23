@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
@@ -15,6 +16,16 @@ class ProductController extends Controller
     public function index()
     {
         return Product::all();
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function incategory($categoryslug)
+    {
+        $category = Category::where('slug', '=', $categoryslug)->first();
+        return Product::where('category_id','=', $category->id)->get();
     }
 
     /**
@@ -38,12 +49,15 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        return Product::findOrFail($id);
+
+        $product = Product::with(['recipes', 'reviews'])->where('slug', $slug)->first();
+
+        return $product;
     }
 
     /**
