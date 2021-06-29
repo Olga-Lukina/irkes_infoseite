@@ -28,10 +28,12 @@ Route::get('products', [ProductController::class, 'index']);
 Route::get('products/{slug}', [ProductController::class, 'show']);
 Route::get('/products/search/{name}',[ProductController::class,'search']);
 Route::get('/products/incategory/{category_slug}',[ProductController::class,'incategory']);
+Route::get('/products/recomendedItems/{category_slug}',[ProductController::class,'recomendedItems']);
 Route::get('categories', [CategoryController::class, 'index']);
 Route::get('categories/{id}', [CategoryController::class, 'show']);
 Route::get('recipes', [RecipeController::class, 'index']);
 Route::get('questions', [QuestionController::class, 'index']);
+Route::post('questions', [QuestionController::class, 'store']);
 Route::get('reviews', [ReviewController::class, 'index']);
 Route::post('reviews', [ReviewController::class, 'store']);
 
@@ -43,7 +45,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'me']);
     Route::get('recipes/{id}', [RecipeController::class, 'show']);
-    Route::get('questions/{id}', [QuestionController::class, 'show']);
 });
 
 Route::middleware('auth:api')->group(function () {

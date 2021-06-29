@@ -18,6 +18,7 @@ class Product extends Model
         'marketing',
         'videorecipes'
     ];
+
     public function recipes (){
         return $this->hasMany(\App\Models\Recipe::class);
     }
@@ -27,4 +28,6 @@ class Product extends Model
     public function questions (){
         return $this->hasMany(\App\Models\Question::class);
     }
+
+
 }

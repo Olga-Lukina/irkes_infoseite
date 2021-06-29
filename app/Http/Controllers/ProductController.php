@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Endroid\QrCode\Builder\Builder as QR;
+use Endroid\QrCode\Writer\PngWriter;
 
 class ProductController extends Controller
 {
@@ -17,6 +19,7 @@ class ProductController extends Controller
     {
         return Product::all();
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -55,9 +58,22 @@ class ProductController extends Controller
     public function show($slug)
     {
 
-        $product = Product::with(['recipes', 'reviews'])->where('slug', $slug)->first();
+        $product = Product::with(['recipes', 'reviews', 'questions'])->where('slug', $slug)->first();
+        $product->recommendedItems = Product::where('category_id','=',  $product->category_id)
+            ->where('id', '<>', $product->id)->limit(6)->get();
+
+
+
+    // https://github.com/endroid/qr-code
+//        $qrcode = QR::create()
+//            ->writer(new PngWriter())
+//            ->writerOptions([])
+//            ->size(1024)
+//            ->data(route('products.show', $id))
+//            ->build();
 
         return $product;
+
     }
 
     /**
