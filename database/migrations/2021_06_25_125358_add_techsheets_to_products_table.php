@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTechshitsToProductsTable extends Migration
+class AddTechsheetsToProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddTechshitsToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('techshits')->after('qrcode');
+            $table->string('techsheets')->after('qrcode');
         });
     }
 
@@ -26,7 +26,7 @@ class AddTechshitsToProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('techshits');
+            $table->dropColumn('techsheets');
         });
     }
 }

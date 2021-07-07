@@ -39,6 +39,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'name'=> 'required',
             'slug' =>  'required',
@@ -61,17 +62,6 @@ class ProductController extends Controller
         $product = Product::with(['recipes', 'reviews', 'questions'])->where('slug', $slug)->first();
         $product->recommendedItems = Product::where('category_id','=',  $product->category_id)
             ->where('id', '<>', $product->id)->limit(6)->get();
-
-
-
-    // https://github.com/endroid/qr-code
-//        $qrcode = QR::create()
-//            ->writer(new PngWriter())
-//            ->writerOptions([])
-//            ->size(1024)
-//            ->data(route('products.show', $id))
-//            ->build();
-
         return $product;
 
     }
