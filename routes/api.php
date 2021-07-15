@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\LocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::get('questions', [QuestionController::class, 'index']);
 Route::post('questions', [QuestionController::class, 'store']);
 Route::get('reviews', [ReviewController::class, 'index']);
 Route::post('reviews', [ReviewController::class, 'store']);
+Route::get('/locations', [LocationController::class, 'index']);
 
 
 
