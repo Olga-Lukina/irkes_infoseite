@@ -18,9 +18,9 @@ class Product extends Model
         'marketing',
         'videorecipes'
     ];
-protected $casts = [
-    'images' =>'array'
-];
+//protected $casts = [
+//    'images' =>'array'
+//];
     public function recipes (){
         return $this->hasMany(\App\Models\Recipe::class);
     }

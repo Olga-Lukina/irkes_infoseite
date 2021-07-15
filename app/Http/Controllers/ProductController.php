@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Endroid\QrCode\Builder\Builder as QR;
@@ -62,6 +63,7 @@ class ProductController extends Controller
         $product = Product::with(['recipes', 'reviews', 'questions'])->where('slug', $slug)->first();
         $product->recommendedItems = Product::where('category_id','=',  $product->category_id)
             ->where('id', '<>', $product->id)->limit(6)->get();
+        $product->avgRating = $product->reviews()->avg('rating');
         return $product;
 
     }
