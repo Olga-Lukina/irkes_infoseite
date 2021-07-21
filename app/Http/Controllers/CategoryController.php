@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return Category::withCount('subcategory')->get();
+        return Category::withCount('subcategory')->withCount('products')->get();
     }
 
     /**
