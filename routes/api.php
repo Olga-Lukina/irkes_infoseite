@@ -34,7 +34,6 @@ Route::get('categories', [CategoryController::class, 'index']);
 Route::get('categories/{id}', [CategoryController::class, 'show']);
 Route::get('recipes', [RecipeController::class, 'index']);
 Route::get('questions', [QuestionController::class, 'index']);
-Route::post('questions', [QuestionController::class, 'store']);
 Route::get('reviews', [ReviewController::class, 'index']);
 Route::post('reviews', [ReviewController::class, 'store']);
 Route::get('/locations', [LocationController::class, 'index']);
@@ -47,6 +46,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'me']);
     Route::get('recipes/{id}', [RecipeController::class, 'show']);
+    Route::post('questions', [QuestionController::class, 'store']);
+    Route::post('reviews', [ReviewController::class, 'store']);
 });
 
 Route::middleware('auth:api')->group(function () {
