@@ -17,12 +17,10 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug');
-            $table->string('images');
+            $table->text('images');
             $table->string('description');
-            $table->string('category_id');
-            $table->integer('qrcode');
-            $table->string('marketing');
-            $table->string('videorecipes');
+            $table->integer('category_id');
+            $table->text('marketing');
             $table->timestamps();
         });
     }
