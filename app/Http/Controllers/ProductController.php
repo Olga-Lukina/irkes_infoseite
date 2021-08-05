@@ -24,12 +24,13 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function incategory($categoryslug)
     {
         $category = Category::where('slug', '=', $categoryslug)->first();
-        return Product::where('category_id','=', $category->id)->get();
+        $products = Product::where('category_id','=', $category->id)->get();
+        return response()->json(['category' => $category, 'products' => $products]);
     }
 
     /**
